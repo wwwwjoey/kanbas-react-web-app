@@ -1,4 +1,6 @@
 import "./index.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 export default function CoursesNavigation() {
   return (
     <div id="wd-courses-navigation" className="list-group fs-5 rounded-0">

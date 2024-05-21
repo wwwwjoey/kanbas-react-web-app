@@ -1,4 +1,5 @@
 import { FaCalendar, FaEnvelopeOpenText, FaRegClock } from "react-icons/fa"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "./index.css";
 export default function Lab2() {
