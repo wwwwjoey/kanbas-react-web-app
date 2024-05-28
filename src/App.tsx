@@ -8,6 +8,8 @@ import { HashRouter, Route, Routes, Navigate } from "react-router-dom"
 
 import Kanbas from "./Kanbas";
 import Grades from './Kanbas/Courses/Grades';
+import Assignments from './Kanbas/Courses/Assignments';
+import AssignmentEditor from './Kanbas/Courses/Assignments/Editor';
 function App() {
  return (
   <HashRouter>
@@ -16,6 +18,10 @@ function App() {
      <Route path="/" element={<Navigate to="Labs"/>}/>
      <Route path="/Labs/*" element={<Labs />} />
      <Route path="/Kanbas/*" element={<Kanbas />} />
+     <Route path="/courses/:courseId/assignments" Component={Assignments} />
+     <Route path="/courses/:cid/assignments/:aid" Component={AssignmentEditor} />
+
+
     </Routes>
    </div>
   </HashRouter>

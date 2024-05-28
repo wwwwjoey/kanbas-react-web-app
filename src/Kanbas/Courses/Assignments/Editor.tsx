@@ -1,15 +1,25 @@
 import React from 'react';
+import { useParams, Link } from 'react-router-dom';
+import assignmentData from '../../Database/assignments.json';
 
 export default function AssignmentEditor() {
+  const { cid, aid } = useParams<{ cid: string; aid: string }>();
+  const assignments = assignmentData as any[];
+  const assignment = assignments.find(assignment => assignment._id === aid);
+
+  if (!assignment) {
+    return <div>Assignment not found</div>;
+  }
+
   return (
     <div id="wd-assignment-editor" className="p-3">
-      <h2 className="mb-4">CS5610 SU1 24 MO ...</h2>
+      <h2 className="mb-4">{assignment.title}</h2>
       <div className="mb-3">
         <label>Assignment Name</label>
         <input
           type="text"
           className="form-control"
-          value="A1"
+          defaultValue={assignment.title}
         />
       </div>
       <div className="mb-3">
@@ -17,7 +27,7 @@ export default function AssignmentEditor() {
         <textarea
           className="form-control"
           rows={8}
-          value={`The assignment is available online
+          defaultValue={`The assignment is available online
 
 Submit a link to the landing page of your Web application running on Netlify.
 
@@ -38,7 +48,7 @@ The Kanbas application should include a link to navigate back to the landing pag
           <input
             type="number"
             className="form-control"
-            value="100"
+            defaultValue="100"
           />
         </div>
       </div>
@@ -118,7 +128,7 @@ The Kanbas application should include a link to navigate back to the landing pag
           <label>Assign to</label>
         </div>
         <div className="col-9">
-          <input type="text" className="form-control" value="Everyone" />
+          <input type="text" className="form-control" defaultValue="Everyone" />
         </div>
       </div>
       <div className="row mb-3">
@@ -126,7 +136,7 @@ The Kanbas application should include a link to navigate back to the landing pag
           <label>Due</label>
         </div>
         <div className="col-9">
-          <input type="datetime-local" className="form-control" value="2024-05-13T23:59" />
+          <input type="datetime-local" className="form-control" defaultValue="2024-05-13T23:59" />
         </div>
       </div>
       <div className="row mb-3">
@@ -134,7 +144,7 @@ The Kanbas application should include a link to navigate back to the landing pag
           <label>Available from</label>
         </div>
         <div className="col-9">
-          <input type="datetime-local" className="form-control" value="2024-05-06T00:00" />
+          <input type="datetime-local" className="form-control" defaultValue="2024-05-06T00:00" />
         </div>
       </div>
       <div className="row mb-3">
@@ -142,12 +152,14 @@ The Kanbas application should include a link to navigate back to the landing pag
           <label>Until</label>
         </div>
         <div className="col-9">
-          <input type="datetime-local" className="form-control" value="2024-05-20T23:59" />
+          <input type="datetime-local" className="form-control" defaultValue="2024-05-20T23:59" />
         </div>
       </div>
       <div className="d-flex justify-content-end">
-        <button className="btn btn-success">Save</button>
+        <Link to={`/courses/${cid}/assignments`} className="btn btn-secondary me-2">Cancel</Link>
+        <Link to={`/courses/${cid}/assignments`} className="btn btn-success">Save</Link>
       </div>
     </div>
   );
 }
+
