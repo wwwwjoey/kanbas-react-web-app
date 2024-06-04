@@ -1,21 +1,21 @@
-import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
-import ReactDOM from "react-dom/client";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import ReactIconsSampler from "./Labs/Lab2/ReactIconSampler";
-import ScreenSizeLabel from "./Labs/Lab2/ScreenSizeLabel";
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
-root.render(
-  <React.StrictMode>
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './App';
+import ReactIconsSampler from './Labs/Lab2/ReactIconSampler';
+import ScreenSizeLabel from './Labs/Lab2/ScreenSizeLabel';
+import store from './Kanbas/store';
+
+ReactDOM.render(
+  <Provider store={store}>
     <App />
     <ReactIconsSampler />
     <ScreenSizeLabel />
-  </React.StrictMode>
+  </Provider>,
+  document.getElementById('root')
 );
+
+
 
 
 

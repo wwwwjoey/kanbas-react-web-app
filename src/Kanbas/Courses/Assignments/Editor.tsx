@@ -1,15 +1,43 @@
-import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import assignmentData from '../../Database/assignments.json';
+import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { handleSave, handleCancel } from './reducer';
+
+type Assignment = {
+  _id: string;
+  course: string;
+  title: string;
+  details: string;
+  availableDate: string;
+  dueDate: string;
+  points: number;
+};
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams<{ cid: string; aid: string }>();
-  const assignments = assignmentData as any[];
-  const assignment = assignments.find(assignment => assignment._id === aid);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const assignments = useSelector((state: any) => state.assignments.assignments);
+  const assignment = assignments.find((assignment: Assignment) => assignment._id === aid);
+
+  const [title, setTitle] = useState(assignment?.title || '');
+  const [details, setDetails] = useState(assignment?.details || '');
+  const [points, setPoints] = useState(assignment?.points || 100);
 
   if (!assignment) {
     return <div>Assignment not found</div>;
   }
+
+  const saveAssignment = () => {
+    const updatedAssignment = { ...assignment, title, details, points };
+    dispatch(handleSave(updatedAssignment));
+    navigate(`/Kanbas/Courses/${cid}/Assignments`);
+  };
+
+  const cancelEdit = () => {
+    dispatch(handleCancel());
+    navigate(`/Kanbas/Courses/${cid}/Assignments`);
+  };
 
   return (
     <div id="wd-assignment-editor" className="p-3">
@@ -19,7 +47,8 @@ export default function AssignmentEditor() {
         <input
           type="text"
           className="form-control"
-          defaultValue={assignment.title}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
       </div>
       <div className="mb-3">
@@ -27,17 +56,8 @@ export default function AssignmentEditor() {
         <textarea
           className="form-control"
           rows={8}
-          defaultValue={`The assignment is available online
-
-Submit a link to the landing page of your Web application running on Netlify.
-
-The landing page should include the following:
-- Your full name and section
-- Links to each of the lab assignments
-- Link to the Kanbas application
-- Links to all relevant source code repositories
-
-The Kanbas application should include a link to navigate back to the landing page.`}
+          value={details}
+          onChange={(e) => setDetails(e.target.value)}
         />
       </div>
       <div className="row mb-3">
@@ -48,7 +68,8 @@ The Kanbas application should include a link to navigate back to the landing pag
           <input
             type="number"
             className="form-control"
-            defaultValue="100"
+            value={points}
+            onChange={(e) => setPoints(parseInt(e.target.value))}
           />
         </div>
       </div>
@@ -156,10 +177,9 @@ The Kanbas application should include a link to navigate back to the landing pag
         </div>
       </div>
       <div className="d-flex justify-content-end">
-        <Link to={`/courses/${cid}/assignments`} className="btn btn-secondary me-2">Cancel</Link>
-        <Link to={`/courses/${cid}/assignments`} className="btn btn-success">Save</Link>
+        <button onClick={cancelEdit} className="btn btn-secondary me-2">Cancel</button>
+        <button onClick={saveAssignment} className="btn btn-success">Save</button>
       </div>
     </div>
   );
 }
-
