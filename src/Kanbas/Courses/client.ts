@@ -1,5 +1,5 @@
 import axios from "axios";
-const REMOTE_SERVER = "http://localhost:4000"
+const REMOTE_SERVER = "http://localhost:10000"
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
 export const fetchAllCourses = async () => {
   const { data } = await axios.get(COURSES_API);
