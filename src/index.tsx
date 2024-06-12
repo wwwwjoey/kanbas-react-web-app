@@ -1,15 +1,21 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <React.StrictMode>
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './App';
+import ReactIconsSampler from './Labs/Lab2/ReactIconSampler';
+import ScreenSizeLabel from './Labs/Lab2/ScreenSizeLabel';
+import store from './Kanbas/store';
+
+ReactDOM.render(
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
+    <ReactIconsSampler />
+    <ScreenSizeLabel />
+  </Provider>,
+  document.getElementById('root')
 );
-reportWebVitals();
+
+
+
 
 
