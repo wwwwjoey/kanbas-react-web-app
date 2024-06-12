@@ -3,7 +3,7 @@ import axios from "axios";
 import * as client from "./client";
 
 
-const REMOTE_SERVER = "http://localhost:4000"
+const REMOTE_SERVER = "http://localhost:10000"
 
 export default function HttpClient() {
     const [welcomeOnClick, setWelcomeOnClick] = useState("");
