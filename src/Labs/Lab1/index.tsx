@@ -1,3 +1,5 @@
+
+
 export default function Lab1() {
     return (
       <div id="wd-lab1">
@@ -284,9 +286,7 @@ to get dummy text<br/>
 
 
 
-      </div>
-
-
+    </div>
     </div>
   );
 }
