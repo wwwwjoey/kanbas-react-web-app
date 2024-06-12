@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const REMOTE_SERVER = 'http://localhost:4000';
+const REMOTE_SERVER = 'http://localhost:10000';
 
 const QueryParameters: React.FC = () => {
   const [a, setA] = useState<number | string>(34);
