@@ -7,7 +7,7 @@ import WorkingWithArraysAsynchronously from "./WorkingWithArraysAsynchronously";
 import WorkingWithObjects from "./WorkingWithObjects";
 import WorkingWithObjectsAsynchronously from "./WorkingWithObjectsAsynchronously";
 
-const REMOTE_SERVER = "http://localhost:4000"
+const REMOTE_SERVER = "http://localhost:10000"
 export default function Lab5() {
   return (
     <div id="wd-lab5">
