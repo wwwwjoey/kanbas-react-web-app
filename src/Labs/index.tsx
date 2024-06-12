@@ -5,7 +5,7 @@ import Lab2 from "./Lab2";
 import Lab3 from "./Lab3";
 import Lab4 from "./Lab4";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import store from "./store";
+import store from "../Kanbas/store";
 import { Provider } from "react-redux";
 import Lab5 from "./Lab5";
 
